@@ -1,103 +1,111 @@
-﻿using System;
+﻿using lab2;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO.Ports;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO.Ports;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using System.IO.IOexception;
 
-namespace LAB_2_CAL
+namespace lab2
 {
     public partial class Form1 : Form
     {
-        SerialPort serialPort = new SerialPort();
-       
-
         public Form1()
         {
             InitializeComponent();
-            serialPort = new SerialPort();
-            serialPort.BaudRate = 9600;
-            serialPort.PortName = "COM9";
-            serialPort.Open();
-            serialPort.Parity = Parity.None;
-            serialPort.DataBits = 8;
-            serialPort.StopBits = StopBits.One;
-            serialPort.Handshake = Handshake.None;
-            Label label1 = new Label();
-            // Set the label's text.
-            label1.Location = new Point(10, 10);
-            // Add the label to the form.
-            this.Controls.Add(label1);
+            serialPort1.Open(); //initialize and open serial port
         }
 
-     
-
-        private void Form1_Load(object sender, EventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
-            
+
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
-            // Send the "connect" command to the Arduino.
-            serialPort.WriteLine("CONNECT");
-            // Update the label to show the current mode.
-            label1.Text = "Mode: Connect";
-          
+            //Turn mode1 signal to ArduinoIDE
+            serialPort1.Write("mode1");
+
+            label1.Text = "Mode 1";
+
+
+            button3.Enabled = false;
+            button3.BackColor = Color.Gray;
+
+            button4.Enabled = true;
+            button4.BackColor = Color.Lime;
+
+            button5.Enabled = true;
+            button5.BackColor = Color.Lime;
+
+            button6.Enabled = true;
+            button6.BackColor = Color.Lime;
         }
 
-        private void button10_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)
         {
-            // Send the "mode1" command to the Arduino.
-            serialPort.WriteLine("Mode 2");
-            // Update the label to show the current mode.
-            label1.Text = "Mode: 2";
+            serialPort1.Write("mode2");
+
+            label1.Text = "Mode 2";
+
+
+            button3.Enabled = false;
+            button3.BackColor = Color.Lime;
+
+            button4.Enabled = true;
+            button4.BackColor = Color.Gray;
+
+            button5.Enabled = true;
+            button5.BackColor = Color.Lime;
+
+            button6.Enabled = true;
+            button6.BackColor = Color.Lime;
         }
 
-        private void button11_Click(object sender, EventArgs e)
+        private void button5_Click(object sender, EventArgs e)
         {
-            // Send the "mode1" command to the Arduino.
-            serialPort.WriteLine("Mode 3");
-            // Update the label to show the current mode.
-            label1.Text = "Mode: 3";
+            serialPort1.Write("mode1");
+
+            label1.Text = "Mode 1";
+
+
+            button3.Enabled = false;
+            button3.BackColor = Color.Gray;
+
+            button4.Enabled = true;
+            button4.BackColor = Color.Lime;
+
+            button5.Enabled = true;
+            button5.BackColor = Color.Gray;
+
+            button6.Enabled = true;
+            button6.BackColor = Color.Lime;
         }
 
-        private void button12_Click(object sender, EventArgs e)
+        private void button6_Click(object sender, EventArgs e)
         {
-            // Send the "mode1" command to the Arduino.
-            serialPort.WriteLine("Mode 4");
-            // Update the label to show the current mode.
-            label1.Text = "Mode: 4";
-        }
+            serialPort1.Write("mode 4");
 
-        private void button8_Click(object sender, EventArgs e)
-        {
-            // Send the "disconnect" command to the Arduino.
-            serialPort.WriteLine("disconnect");
-            // Update the label to show the current mode.
-            label1.Text = "Mode: Disconnect";
-        }
+            label1.Text = "Mode 4";
 
-        private void button9_Click(object sender, EventArgs e)
-        {
-            // Send the "mode1" command to the Arduino.
-            serialPort.WriteLine("Mode 1");
-            // Update the label to show the current mode.
-            label1.Text = "Mode: 1";
+
+            button3.Enabled = false;
+            button3.BackColor = Color.Lime;
+
+            button4.Enabled = true;
+            button4.BackColor = Color.Lime;
+
+            button5.Enabled = true;
+            button5.BackColor = Color.Lime;
+
+            button6.Enabled = true;
+            button6.BackColor = Color.Gray;
         }
     }
-
-
-
-
-
-
-      
-  
 }
+
